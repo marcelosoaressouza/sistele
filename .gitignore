@@ -1,0 +1,9 @@
+assets
+assets/*
+assets/**/*
+protected/config
+protected/config/*
+protected/config/**/*
+protected/runtime
+protected/runtime/*
+protected/runtime/**/*

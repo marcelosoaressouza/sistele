@@ -1,0 +1,101 @@
+1º Campo deve ser Cabeça de Rede _________________
+2º Campo deve ser ID Telecentro  __________________
+3º Campo deve se  ID GESAC ____________________
+4º Campo deve ser INEP ____________________
+5 - Nome do Telecentro __________________________
+6 - Endereço / Bairro / Município / UF/  CEP _________
+7 - Referências__________________________________
+8 - Coordenadas Geográficas ______________________
+9 -  Gestor Local  ________________________________
+10 - Telefone ___________________________________
+11 - Celular _____________________________________
+12 - email ____________________________________
+
+SE PUDER POR UMA LINHA PRA SEPARAR O TIPO DE INFORMAÇÃO
+
+12 - Tipo de Telecentro  [] novo  [] recondicionado [] os dois
+13 - Número de Computadores  _______________
+14 - Equipamentos do telecentro _____ bastante espaço
+15 – Tipo Conexão  ________________
+16 - tipo de energia __________________
+17 Status [] aguardando [] entregue [] funcionando [] fechado [] desistencia
+18 Adequado [] sim []não
+
+-----------------------------------------------------------------------------------------------------------
+
+19 Bolsista __________________
+Tipo de Bolsa [] 241   [] 483
+telefone _______
+email ________
+
+20 Bolsista __________________
+Tipo de Bolsa [] 241   [] 483
+telefone _______
+email ________
+
+20 Banheiro  [] sim []não
+21 Acessibilidade  [] sim []não
+Descrição  ________________
+Área Temática [] Preservação  []pesquisa  [] quilombola [] indígena []
+educação ambiental [] rural []
+                       [] comunicação [] multimídia [] acesso urbano []  UC
+
+Unidade de Conservação [] federal []municipal [] estadual [] outros
+Nome da UC ______________
+Categoria de Manejo ____________
+Programas  []
+
+   * Casa Brasil
+
+   * CDTC - Centro de Difusão de Tecnologia e Conhecimento
+
+   * Centros de Inclusão Digital
+
+   * Computador para Todos
+
+   * CVT - Centros Vocacionais Tecnológicos
+
+   * GESAC
+
+   * Kits Telecentros
+
+   * Maré - Telecentros da Pesca
+
+   * Observatório Nacional de Inclusão Digital
+
+   * Pontos de Cultura - Cultura Digital
+
+   * Programa Banda Larga nas Escolas
+
+   * Programa Computador Portátil para Professores
+
+   * Programa Estação Digital
+
+   * Programa Nacional de Apoio à Inclusão Digital nas Comunidades -
+Telecentros.BR
+
+   * Programa SERPRO de Inclusão Digital - PSID
+
+   * ProInfo - Programa Nacional de Informática na Educação
+
+   * Projeto Computadores para Inclusão
+
+   * Quiosque do Cidadão
+
+   * Telecentros Banco do Brasil
+
+   * Territórios Digitais
+
+   * TIN - Telecentros de Informação e Negócios
+
+   * UCA - Projeto Um Computador Por Aluno
+
+[] outros ___________________________________
+
+O telecentros está em Escola [] sim [] não
+Nome da Escola ______________________
+
+
+
+DETALHES:
+AUMENTAR O CAMPO ENDEREÇO

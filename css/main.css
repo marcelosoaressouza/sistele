@@ -1,0 +1,300 @@
+body {
+	margin: 0;
+	padding: 0;
+	font: normal 11pt Arial,Helvetica,sans-serif;
+	background: #A0C74E;
+/*	background: #A0C74E url(/images/background.png) fixed repeat-x top left; */
+}
+
+a {
+  text-decoration:none;
+  font-size: 12px;
+  color: #2988BC;
+}
+
+#page
+{
+	background: white;
+}
+
+#header
+{
+	margin: 0;
+	padding: 0;
+	border-top: 3px solid #AAD15A;
+}
+
+.container {
+    min-width: 1005px;
+    min-height: 390px;
+}
+
+#content
+{
+    padding: 5px;
+    min-width: 905px;
+    min-height: 300px;
+
+}
+
+div.span-5 {
+    float: right;
+    margin-right: 0px;
+    min-width: 140px;
+    max-width: 140px;
+}
+
+#sidebar
+{
+    text-align: center;
+    min-width: 120px;
+    max-width: 120px;
+}
+
+#footer
+{
+	padding: 10px;
+	margin: 10px 20px;
+	font-size: 0.8em;
+	text-align: center;
+	border-top: 1px solid #AAD15A;
+}
+
+#logo
+{
+	padding: 15px 0px;
+	font-size: 200%;
+}
+
+#mainmenu
+{
+	background:white url(bg.gif) repeat-x left top;
+	padding: 5px 0px;
+}
+
+#mainmenu ul
+{
+	padding:6px 20px 5px 20px;
+	margin:0px;
+}
+
+#mainmenu ul li
+{
+	display: inline;
+}
+
+#mainmenu ul li a
+{
+	color:#ffffff;
+	background-color:transparent;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:5px 8px;
+}
+
+#mainmenu ul li a:hover, #mainmenu ul li.active a
+{
+	color: #000;
+	
+	text-decoration:none;
+}
+
+div.flash-error, div.flash-notice, div.flash-success
+{
+	padding:.8em;
+	margin-bottom:1em;
+	border:2px solid #ddd;
+}
+
+div.flash-error
+{
+	background:#FBE3E4;
+	color:#8a1f11;
+	border-color:#FBC2C4;
+}
+
+div.flash-notice
+{
+	background:#FFF6BF;
+	color:#514721;
+	border-color:#FFD324;
+}
+
+div.flash-success
+{
+	background:#E6EFC2;
+	color:#264409;
+	border-color:#C6D880;
+}
+
+div.flash-error a
+{
+	color:#8a1f11;
+}
+
+div.flash-notice a
+{
+	color:#514721;
+}
+
+div.flash-success a
+{
+	color:#264409;
+}
+
+div.form .rememberMe label
+{
+	display: inline;
+}
+
+div.view
+{
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #C9E0ED;
+}
+
+div.breadcrumbs
+{
+	font-size: 0.9em;
+	padding: 5px 20px;
+}
+
+div.breadcrumbs span
+{
+	font-weight: bold;
+}
+
+div.search-form
+{
+	padding: 10px;
+	margin: 10px 0;
+	background: #B9E55B;
+}
+
+.portlet
+{
+
+}
+
+.portlet-decoration
+{
+	padding: 3px 8px;
+	background: #AAD15A;
+	border-left: 5px solid #AAD15A;
+}
+
+.portlet-title
+{
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	color: #555555;
+}
+
+.portlet-content
+{
+	font-size:0.9em;
+	margin: 0 0 15px 0;
+	padding: 5px 8px;
+	background: #e0e8d0;
+}
+
+.portlet-content ul
+{
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-content li
+{
+	padding: 2px 0 4px 0px;
+}
+
+.operations
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.operations li
+{
+	padding-bottom: 2px;
+}
+
+.operations li a
+{
+	font: bold 12px Arial;
+	color: #000;
+	display: block;
+	padding: 2px 0 2px 8px;
+	line-height: 15px;
+	text-decoration: none;
+}
+
+.operations li a:visited
+{
+	color: #555555;
+}
+
+.operations li a:hover
+{
+	background: #AAD15A;
+}
+
+ul.yiiPager li
+{
+        display:inline;
+}
+
+ul.yiiPager a:link,
+ul.yiiPager a:visited
+{
+        border: solid 1px #AAD15A;
+        font-weight:bold;
+        color:#000;
+        padding:1px 6px;
+        text-decoration:none;
+}
+
+ul.yiiPager .page a
+{
+        color: #000;
+        
+}
+
+ul.yiiPager a:hover
+{
+        border:solid 1px #AAD15A;
+        color: #AAD15A;
+}
+
+ul.yiiPager .selected a {
+    background: none repeat scroll 0 0 #AAD15A;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+input, textarea  {
+
+  cursor:pointer;
+  border:outset 1px #ccc;
+  background:#999;
+  color:#666;
+  font-weight:bold;
+  
+  padding: 1px 2px;
+  background: #fff;
+
+}
+
+.search-button {
+    float:right;
+}
+

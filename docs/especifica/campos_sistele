@@ -1,0 +1,103 @@
+--------------- Campos Bolsista
+nome
+email
+telefones
+tipo_bolsa
+inicio_vigencia
+termino_vigencia
+url_lattes
+id_telecentro
+id
+
+
+nome, email, telefones, tipo_bolsa, inicio_vigencia, termino_vigencia, url_lattes, id_telecentro
+
+'nome'
+'email'
+'telefones'
+'tipo_bolsa'
+'inicio_vigencia'
+'termino_vigencia'
+'url_lattes'
+'id_telecentro'
+
+'nome'             => 'Nome',
+'email'            => 'E-Mail',
+'telefones'        => 'Telefones',
+'tipo_bolsa'       => 'Tipo de Bolsa',
+'inicio_vigencia'  => 'Inicio Vigência',
+'termino_vigencia' => 'Termino Vigência',
+'url_lattes'       => 'Lattes',
+'id_telecentro'    => 'Telecentro',
+
+'nome',
+'email',
+'telefones',
+'tipo_bolsa',
+'inicio_vigencia',
+'termino_vigencia',
+'url_lattes',
+'id_telecentro',
+
+--------------- Campos Telecentro
+codigo
+nome
+endereco
+cep
+municipio
+uf
+ponto_de_referencia
+responsavel
+email
+telefones
+proponente
+tipo_de_conexao
+tipo_de_telecentro
+observacao
+
+codigo, nome, endereco, cep, municipio, uf, ponto_de_referencia, responsavel, email, telefones, proponente, tipo_de_conexao,tipo_de_telecentro, observacao
+
+'codigo'
+'nome'
+'endereco'
+'cep'
+'municipio'
+'uf'
+'ponto_de_referencia'
+'responsavel'
+'email'
+'telefones'
+'proponente'
+'tipo_de_conexao'
+'tipo_de_telecentro'
+'observacao'
+
+'codigo' => 'Código'
+'nome' => 'Nome'
+'endereco' => 'Endereço'
+'cep' => 'CPE'
+'municipio' => 'Município'
+'uf' => 'UF'
+'ponto_de_referencia' => 'Ponto de Referência'
+'responsavel' => 'Responsável'
+'email' => 'E-Mail(s)'
+'telefones' => 'Telefone(s)'
+'proponente' => 'Proponente'
+'tipo_de_conexao' => 'Tipo de Conexão'
+'tipo_de_telecentro' => 'Tipo de Telecentro'
+'observacao' => 'Observação'
+
+                        'codigo',
+                        'nome',
+                        'endereco',
+                        'cep',
+                        'municipio',
+                        'uf',
+                        'ponto_de_referencia',
+                        'responsavel',
+                        'email',
+                        'telefones',
+                        'proponente',
+                        'tipo_de_conexao',
+                        'tipo_de_telecentro',
+                        'observacao',
