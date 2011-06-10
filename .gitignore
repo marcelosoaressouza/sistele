@@ -1,9 +1,7 @@
 assets
 assets/*
 assets/**/*
-protected/config
-protected/config/*
-protected/config/**/*
+protected/config/main.php
 protected/runtime
 protected/runtime/*
 protected/runtime/**/*
