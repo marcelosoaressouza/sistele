@@ -13,10 +13,27 @@
     foreach ($_POST['column'] as $column)
     {
       $columns[$i++] = $column;
+      Yii::app()->request->cookies['report-'.$i] = new CHttpCookie('report-'.$i, $column);
     }
 
+    Yii::app()->request->cookies['report'] = new CHttpCookie('report', $i);
+    
     $selected = $columns;
+    
   
+  }
+  else if (!empty(Yii::app()->request->cookies['report']->value))
+  {
+      $x = Yii::app()->request->cookies['report']->value;
+      
+      for ($i = 0 ; $i <= $x; $i++)
+      {
+        if(!empty(Yii::app()->request->cookies['report-'.$i]->value))
+            $selected[$i] = Yii::app()->request->cookies['report-'.$i]->value;
+        
+      }
+      
+      $columns = $selected;
   }
   else
   {

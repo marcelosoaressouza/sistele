@@ -147,7 +147,8 @@ class TelecentroController extends Controller
         {
             $model->attributes=$_GET['Telecentro'];
         }
-
+        
+        
         $this->render('index',array('model'=>$model));
 
     }

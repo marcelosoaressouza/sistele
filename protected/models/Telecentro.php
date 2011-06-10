@@ -103,19 +103,19 @@ class Telecentro extends CActiveRecord
         $criteria = new CDbCriteria;
         $criteria->compare('id'                        , $this->id, true);
         $criteria->compare('codigo'                    , $this->codigo, true);
-        $criteria->compare('lower(nome)'               , mb_strtolower($this->nome), true);
-        $criteria->compare('lower(endereco)'           , mb_strtolower($this->endereco), true);
+        $criteria->compare('lower(nome)'               , mb_strtolower($this->nome, 'UTF-8'), true);
+        $criteria->compare('lower(endereco)'           , mb_strtolower($this->endereco, 'UTF-8'), true);
         $criteria->compare('cep'                       , $this->cep, true);
-        $criteria->compare('lower(municipio)'          , mb_strtolower($this->municipio), true);
-        $criteria->compare('lower(uf)'                 , mb_strtolower($this->uf), true);
-        $criteria->compare('lower(ponto_de_referencia)', mb_strtolower($this->ponto_de_referencia), true);
-        $criteria->compare('lower(responsavel)'        , mb_strtolower($this->responsavel), true);
-        $criteria->compare('lower(email)'              , mb_strtolower($this->email), true);
+        $criteria->compare('lower(municipio)'          , mb_strtolower($this->municipio, 'UTF-8'), true);
+        $criteria->compare('lower(uf)'                 , mb_strtolower($this->uf, 'UTF-8'), true);
+        $criteria->compare('lower(ponto_de_referencia)', mb_strtolower($this->ponto_de_referencia, 'UTF-8'), true);
+        $criteria->compare('lower(responsavel)'        , mb_strtolower($this->responsavel, 'UTF-8'), true);
+        $criteria->compare('lower(email)'              , mb_strtolower($this->email, 'UTF-8'), true);
         $criteria->compare('telefones'                 , $this->telefones, true);
-        $criteria->compare('lower(proponente)'         , mb_strtolower($this->proponente), true);
+        $criteria->compare('lower(proponente)'         , mb_strtolower($this->proponente, 'UTF-8'), true);
         $criteria->compare('tipo_de_conexao'           , $this->tipo_de_conexao, true);
         $criteria->compare('tipo_de_telecentro'        , $this->tipo_de_telecentro, true);
-        $criteria->compare('lower(observacao)'         , mb_strtolower($this->observacao), true);
+        $criteria->compare('lower(observacao)'         , mb_strtolower($this->observacao, 'UTF-8'), true);
         
 //        $criteria->order='nome_telecentro ASC';
         

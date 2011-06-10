@@ -25,7 +25,7 @@ Yii::app()->clientScript->registerScript('search', "
 <!-- search-form -->
 
 <?php
-    echo CHtml::beginForm('telecentro/options', 'post', array('id'=>'frm','name'=>'frm'));
+    echo CHtml::beginForm('/telecentro/options', 'post', array('id'=>'frm','name'=>'frm'));
     echo '<center>';
     echo '&nbsp;&nbsp;'.CHtml::submitButton('Adicionar Novo Registro', array('name'=>'Adicionar', 'onclick'=> 'document.pressed=this.name'));
     echo '&nbsp;&nbsp;'.CHtml::submitButton('Relatório(s)'           , array('name'=>'Relatorios', 'onclick'=> 'document.pressed=this.name'));
