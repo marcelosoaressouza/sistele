@@ -80,7 +80,7 @@ http://www.gnu.org/licenses/gpl-2.0.html
 
   <!-- begin of footer -->
   <div id="footer">
-    <strong>Sistema Telecentros Ambiente Digital 1.0.0</strong><br/>
+    <strong>Sistema Telecentros Ambiente Digital 1.0.1</strong><br/>
     Este é um <a href="http://pt.wikipedia.org/wiki/Software_livre">Software Livre</a> licenciado sobre a <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2.</a><br/>
     Desenvolvido utilizando o Framework <a href="http://www.yiiframework.com/">Yii</a> (PHP5).<br/>
   </div>
