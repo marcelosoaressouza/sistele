@@ -72,8 +72,8 @@ class TelecentroController extends Controller
     {
         if(isset($_POST['destinatario']))
         {
-            $mailer->IsSMTP();
             $mailer = Yii::createComponent('application.extensions.mailer.EMailer');
+            $mailer->IsSMTP();
             $mailer->Host = 'sistele.ambientedigital.org';
             $mailer->From = 'sistele@ambientedigital.org';
             $mailer->FromName = 'Sistema Telecentro Ambiente Digital - MMA';

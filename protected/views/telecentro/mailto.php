@@ -5,7 +5,8 @@
 
 <?php
 
-if (empty($emails)) {
+if (empty($emails))
+    {
     echo "<br/><br/><center><h2>Nenhum destinatário selecionado.</h2></center>";
     
 }
@@ -28,7 +29,7 @@ else
 
 <div class="row">
   <?php echo CHtml::label('Mensagem','label-mensagem');?><br/>
-  <?php echo CHtml::textArea('mensagem', 'Mensagem Padrão', array('rows'=>10, 'cols'=>100));?>
+  <?php echo CHtml::textArea('mensagem', "\n\n---\ncontato@ambientedigital.org\nhttp://blog.ambientedigital.org/", array('rows'=>10, 'cols'=>100));?>
 </div>
 
 <div class="row buttons">
