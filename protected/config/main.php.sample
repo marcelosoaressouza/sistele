@@ -26,6 +26,11 @@ return array(
            'components'=>array(
                // 'cache' => array ('class' => 'CMemCache','servers'=>array(array('host'=>'localhost','port'=>11211,),),),
                'user'=>array('allowAutoLogin'=>true,),
+               'mailer' => array('class' => 'application.extensions.mailer.EMailer',
+                                 'pathViews' => 'application.views.email',
+                                 'pathLayouts' => 'application.views.email.layouts'
+                                ),
+               
                // uncomment the following to enable URLs in path-format
                'urlManager'=>array(
                    'urlFormat'=>'path',

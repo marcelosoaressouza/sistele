@@ -8,6 +8,16 @@
 </div>
 
 <div class="row">
+<?php echo $form->label($model,'municipio');?>
+<?php echo $form->textField($model,'municipio',array('size'=>24,'maxlength'=>32));?>
+</div>
+    
+<div class="row">
+<?php echo $form->label($model,'uf');?>
+<?php echo $form->textField($model,'uf',array('size'=>4,'maxlength'=>4));?>
+</div>
+
+<div class="row">
 <?php echo $form->label($model,'nome');?>
 <?php echo $form->textField($model,'nome',array('size'=>60,'maxlength'=>128));?>
 </div>
@@ -15,16 +25,6 @@
 <div class="row">
 <?php echo $form->label($model,'responsavel');?>
 <?php echo $form->textField($model,'responsavel',array('size'=>60,'maxlength'=>128));?>
-</div>
-
-<div class="row">
-<?php echo $form->label($model,'email');?>
-<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128));?>
-</div>
-
-<div class="row">
-<?php echo $form->label($model,'telefones');?>
-<?php echo $form->textField($model,'telefones',array('size'=>16,'maxlength'=>16));?>
 </div>
 
 <div class="row">

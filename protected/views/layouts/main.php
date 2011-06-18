@@ -29,13 +29,22 @@ http://www.gnu.org/licenses/gpl-2.0.html
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
   <![endif]-->
 
-  <link rel="stylesheet" type="text/css" href="/js/ext/examples/docs/resources/ext-all.css"/>
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/outros.css" />
   
-  <script type="text/javascript" src="/js/ext/examples/docs/resources/ext-base.js"></script>
-  <script type="text/javascript" src="/js/ext/ext-all.js"></script>
+	<?php
+		$cs = Yii::app()->clientScript;  
+		$cs->registerCoreScript('jquery');    
+		$cs->registerCoreScript('jquery.ui');    
+
+		$cs->registerCssFile(Yii::app()->baseUrl    . '/3rdparty/jquery.alerts/jquery.alerts.css');
+		$cs->registerScriptFile(Yii::app()->baseUrl . '/3rdparty/jquery.alerts/jquery.alerts.js', CClientScript::POS_HEAD);
+		
+                $cs->registerCssFile(Yii::app()->baseUrl    . '/3rdparty/jquery.fancybox-1.3.1/fancybox/jquery.fancybox-1.3.1.css');
+                $cs->registerScriptFile(Yii::app()->baseUrl . '/3rdparty/jquery.fancybox-1.3.1/fancybox/jquery.fancybox-1.3.1.js', CClientScript::POS_HEAD);
+	?>
+  
 
 </head>
 

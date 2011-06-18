@@ -31,7 +31,7 @@ class TelecentroController extends Controller
                          'users'=>array('*'),
                         ),
                    array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                         'actions'=>array('index', 'view', 'create', 'update', 'delete', 'report'),
+                         'actions'=>array('index', 'view', 'create', 'update', 'delete', 'report', 'mail'),
                          'users'=>array('@'),
                         ),
                    array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -44,22 +44,74 @@ class TelecentroController extends Controller
                );
     }
     
-	/**
-	 * Lists selectedmodels.
-	 */
-	public function actionOptions()
-	{
-            if (isSet($_REQUEST['Adicionar']))
+    /**
+     * Lists selectedmodels.
+    */
+    public function actionOptions()
+    {
+        if (isSet($_POST['emails']))
+        {
+            $emails = $_POST['emails'];
+        }
+        
+        if (isSet($_REQUEST['Adicionar']))
+        {
+            $this->redirect(array('telecentro/create'));
+        }
+        else if (isSet($_REQUEST['Relatorios']))
+        {
+            $this->redirect(array('telecentro/report'));
+        }
+        else if (isSet($_REQUEST['Mail']))
+        {
+            $this->redirect(array('telecentro/mail', 'emails' => $emails));                
+        }
+    }
+
+    public function actionMail()
+    {
+        if(isset($_POST['destinatario']))
+        {
+            $mailer->IsSMTP();
+            $mailer = Yii::createComponent('application.extensions.mailer.EMailer');
+            $mailer->Host = 'sistele.ambientedigital.org';
+            $mailer->From = 'sistele@ambientedigital.org';
+            $mailer->FromName = 'Sistema Telecentro Ambiente Digital - MMA';
+            $mailer->CharSet = 'UTF-8';
+            $mailer->Subject = $_POST['assunto'];
+            $mailer->Body = $_POST['mensagem'];
+            $mailer->AddAddress($_POST['destinatario']);
+            $mailer->Send();
+            
+            $this->render('confirm', array('action' => array(0 => 'mail')));
+        }
+        else
+        {
+            $emails = $_GET['emails'];
+            $to = array();
+            
+            foreach ($emails as $str)
             {
-                $this->redirect(array('telecentro/create'));
-            }
-            if (isSet($_REQUEST['Relatorios']))
-            {
-                $this->redirect(array('telecentro/report'));
+                preg_match_all("/[A-Za-z0-9._-]+@\w+[\.\w+]+\b/", $str, $output);
+                
+                foreach ($output as $emails)
+                {
+                    foreach ($emails as $email)
+                    {
+                       array_push($to, $email);
+                    }
+                }
+                
+                
             }
             
-	}
-
+            $emailList = array_unique($to);
+            
+            $this->render('mailto', array('emails' => $emailList));
+                
+        }        
+    }
+        
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
