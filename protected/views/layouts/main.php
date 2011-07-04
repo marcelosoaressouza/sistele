@@ -43,6 +43,7 @@ http://www.gnu.org/licenses/gpl-2.0.html
 		
                 $cs->registerCssFile(Yii::app()->baseUrl    . '/3rdparty/jquery.fancybox-1.3.1/fancybox/jquery.fancybox-1.3.1.css');
                 $cs->registerScriptFile(Yii::app()->baseUrl . '/3rdparty/jquery.fancybox-1.3.1/fancybox/jquery.fancybox-1.3.1.js', CClientScript::POS_HEAD);
+                $cs->registerScriptFile(Yii::app()->baseUrl . '/js/sistele.js', CClientScript::POS_HEAD);
 	?>
   
 

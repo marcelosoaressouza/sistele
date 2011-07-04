@@ -1,0 +1,23 @@
+<br/>
+<?php
+$this->widget('zii.widgets.CDetailView', array(
+                        'data'=>$model,
+                        'attributes'=>array(
+                        'codigo',
+                        'nome',
+                        'endereco',
+                        'cep',
+                        'municipio',
+                        'uf',
+                        'ponto_de_referencia',
+                        'responsavel',
+                        'email',
+                        'telefones',
+                        'proponente',
+                        'tipo_de_conexao',
+                        'tipo_de_telecentro',
+                        'observacao',
+                        ),
+                    ));
+?>
+<br/>
