@@ -58,7 +58,7 @@
  * For object-based filters, the '+' and '-' operators are following the class name.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CController.php 3307 2011-06-23 15:58:37Z qiang.xue $
+ * @version $Id: CController.php 3382 2011-08-11 20:56:12Z alexander.makarow $
  * @package system.web
  * @since 1.0
  */
@@ -1114,7 +1114,7 @@ class CController extends CBaseController
 		if(Yii::app()->getRequest()->getIsPostRequest())
 			$filterChain->run();
 		else
-			throw new CHttpException(400,Yii::t('yii','Your request is not valid.'));
+			throw new CHttpException(400,Yii::t('yii','Your request is invalid.'));
 	}
 
 	/**
@@ -1128,7 +1128,7 @@ class CController extends CBaseController
 		if(Yii::app()->getRequest()->getIsAjaxRequest())
 			$filterChain->run();
 		else
-			throw new CHttpException(400,Yii::t('yii','Your request is not valid.'));
+			throw new CHttpException(400,Yii::t('yii','Your request is invalid.'));
 	}
 
 	/**

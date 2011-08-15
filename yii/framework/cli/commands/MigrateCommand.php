@@ -16,7 +16,7 @@
  * authored by Pieter Claerhout.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: MigrateCommand.php 3069 2011-03-14 00:28:38Z qiang.xue $
+ * @version $Id: MigrateCommand.php 3373 2011-08-05 22:28:57Z alexander.makarow $
  * @package system.cli.commands
  * @since 1.1.6
  */
@@ -360,17 +360,18 @@ class MigrateCommand extends CConsoleCommand
 		echo "*** applying $class\n";
 		$start=microtime(true);
 		$migration=$this->instantiateMigration($class);
-		$time=microtime(true)-$start;
 		if($migration->up()!==false)
 		{
 			$this->getDbConnection()->createCommand()->insert($this->migrationTable, array(
 				'version'=>$class,
 				'apply_time'=>time(),
 			));
+			$time=microtime(true)-$start;
 			echo "*** applied $class (time: ".sprintf("%.3f",$time)."s)\n\n";
 		}
 		else
 		{
+			$time=microtime(true)-$start;
 			echo "*** failed to apply $class (time: ".sprintf("%.3f",$time)."s)\n\n";
 			return false;
 		}
@@ -384,15 +385,16 @@ class MigrateCommand extends CConsoleCommand
 		echo "*** reverting $class\n";
 		$start=microtime(true);
 		$migration=$this->instantiateMigration($class);
-		$time=microtime(true)-$start;
 		if($migration->down()!==false)
 		{
 			$db=$this->getDbConnection();
 			$db->createCommand()->delete($this->migrationTable, $db->quoteColumnName('version').'=:version', array(':version'=>$class));
+			$time=microtime(true)-$start;
 			echo "*** reverted $class (time: ".sprintf("%.3f",$time)."s)\n\n";
 		}
 		else
 		{
+			$time=microtime(true)-$start;
 			echo "*** failed to revert $class (time: ".sprintf("%.3f",$time)."s)\n\n";
 			return false;
 		}
@@ -423,16 +425,7 @@ class MigrateCommand extends CConsoleCommand
 		$db=$this->getDbConnection();
 		if($db->schema->getTable($this->migrationTable)===null)
 		{
-			echo 'Creating migration history table "'.$this->migrationTable.'"...';
-			$db->createCommand()->createTable($this->migrationTable, array(
-				'version'=>'string NOT NULL PRIMARY KEY',
-				'apply_time'=>'integer',
-			));
-			$db->createCommand()->insert($this->migrationTable, array(
-				'version'=>self::BASE_MIGRATION,
-				'apply_time'=>time(),
-			));
-			echo "done.\n";
+			$this->createMigrationHistoryTable();
 		}
 		return CHtml::listData($db->createCommand()
 			->select('version, apply_time')
@@ -440,6 +433,21 @@ class MigrateCommand extends CConsoleCommand
 			->order('version DESC')
 			->limit($limit)
 			->queryAll(), 'version', 'apply_time');
+	}
+
+	protected function createMigrationHistoryTable()
+	{
+		$db=$this->getDbConnection();
+		echo 'Creating migration history table "'.$this->migrationTable.'"...';
+		$db->createCommand()->createTable($this->migrationTable,array(
+			'version'=>'string NOT NULL PRIMARY KEY',
+			'apply_time'=>'integer',
+		));
+		$db->createCommand()->insert($this->migrationTable,array(
+			'version'=>self::BASE_MIGRATION,
+			'apply_time'=>time(),
+		));
+		echo "done.\n";
 	}
 
 	protected function getNewMigrations()
@@ -479,7 +487,7 @@ DESCRIPTION
 
 EXAMPLES
  * yiic migrate
-   Applies ALL new migrations. This is equivalent to 'yiic migrate to'.
+   Applies ALL new migrations. This is equivalent to 'yiic migrate up'.
 
  * yiic migrate create create_user_table
    Creates a new migration named 'create_user_table'.

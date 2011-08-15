@@ -45,7 +45,7 @@
  * you should store them directly in session on the server side if needed.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CWebUser.php 3276 2011-06-15 14:21:12Z alexander.makarow $
+ * @version $Id: CWebUser.php 3369 2011-08-04 07:55:11Z mdomba $
  * @package system.web.auth
  * @since 1.0
  */
@@ -105,6 +105,18 @@ class CWebUser extends CApplicationComponent implements IWebUser
 	 * @since 1.1.7
 	 */
 	public $autoUpdateFlash=true;
+	/**
+	 * @var string value that will be echoed in case that user session has expired during an ajax call.
+	 * When a request is made and user session has expired, {@link loginRequired} redirects to {@link loginUrl} for login.
+	 * If that happens during an ajax call, the complete HTML login page is returned as the result of that ajax call. That could be
+	 * a problem if the ajax call expects the result to be a json array or a predefined string, as the login page is ignored in that case.
+	 * To solve this, set this property to the desired return value.
+	 * 
+	 * If this property is set, this value will be returned as the result of the ajax call in case that the user session has expired.
+	 * @since 1.1.9
+	 * @see loginRequired
+	 */
+	public $loginRequiredAjaxResponse;
 
 	private $_keyPrefix;
 	private $_access=array();
@@ -342,6 +354,11 @@ class CWebUser extends CApplicationComponent implements IWebUser
 
 		if(!$request->getIsAjaxRequest())
 			$this->setReturnUrl($request->getUrl());
+		elseif(isset($this->loginRequiredAjaxResponse))
+		{
+			echo $this->loginRequiredAjaxResponse;
+			Yii::app()->end();
+		}
 
 		if(($url=$this->loginUrl)!==null)
 		{
@@ -417,7 +434,8 @@ class CWebUser extends CApplicationComponent implements IWebUser
 	protected function restoreFromCookie()
 	{
 		$app=Yii::app();
-		$cookie=$app->getRequest()->getCookies()->itemAt($this->getStateKeyPrefix());
+		$request=$app->getRequest();
+		$cookie=$request->getCookies()->itemAt($this->getStateKeyPrefix());
 		if($cookie && !empty($cookie->value) && ($data=$app->getSecurityManager()->validateData($cookie->value))!==false)
 		{
 			$data=@unserialize($data);
@@ -430,7 +448,7 @@ class CWebUser extends CApplicationComponent implements IWebUser
 					if($this->autoRenewCookie)
 					{
 						$cookie->expire=time()+$duration;
-						$app->getRequest()->getCookies()->add($cookie->name,$cookie);
+						$request->getCookies()->add($cookie->name,$cookie);
 					}
 					$this->afterLogin(true);
 				}
@@ -446,7 +464,8 @@ class CWebUser extends CApplicationComponent implements IWebUser
 	 */
 	protected function renewCookie()
 	{
-		$cookies=Yii::app()->getRequest()->getCookies();
+		$request=Yii::app()->getRequest();
+		$cookies=$request->getCookies();
 		$cookie=$cookies->itemAt($this->getStateKeyPrefix());
 		if($cookie && !empty($cookie->value) && ($data=Yii::app()->getSecurityManager()->validateData($cookie->value))!==false)
 		{

@@ -16,7 +16,7 @@
  * about this class.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  *
@@ -482,6 +482,9 @@ abstract class CActiveRecord extends CModel
 	 * <li>'index': the name of the column whose values should be used as keys
 	 *   of the array that stores related objects. This option is only available to
 	 *   HAS_MANY and MANY_MANY relations. This option has been available since version 1.0.7.</li>
+	 * <li>'scopes': scopes to apply. In case of a single scope can be used like 'scopes'=>'scopeName',
+	 *   in case of multiple scopes can be used like 'scopes'=>array('scopeName1','scopeName2').
+	 *   This option has been available since version 1.1.9.</li>
 	 * </ul>
 	 *
 	 * The following options are available for certain relations when lazy loading:
@@ -1874,7 +1877,7 @@ abstract class CActiveRecord extends CModel
 /**
  * CBaseActiveRelation is the base class for all active relations.
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0.4
  */
@@ -2017,7 +2020,7 @@ class CBaseActiveRelation extends CComponent
 /**
  * CStatRelation represents a statistical relational query.
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0.4
  */
@@ -2055,7 +2058,7 @@ class CStatRelation extends CBaseActiveRelation
 /**
  * CActiveRelation is the base class for representing active relations that bring back related objects.
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -2091,6 +2094,16 @@ class CActiveRelation extends CBaseActiveRelation
 	 * only when the primary table is not limited.
 	 */
 	public $together;
+	/**
+	 * @var mixed scopes to apply
+	 * Can be set to the one of the following:
+	 * <ul>
+	 * <li>Single scope: 'scopes'=>'scopeName'.</li>
+	 * <li>Multiple scopes: 'scopes'=>array('scopeName1','scopeName2').</li>
+	 * </ul>
+	 * @since 1.1.9
+	 */
+	 public $scopes;
 
 	/**
 	 * Merges this relation with a criteria specified dynamically.
@@ -2142,7 +2155,7 @@ class CActiveRelation extends CBaseActiveRelation
 /**
  * CBelongsToRelation represents the parameters specifying a BELONGS_TO relation.
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -2154,7 +2167,7 @@ class CBelongsToRelation extends CActiveRelation
 /**
  * CHasOneRelation represents the parameters specifying a HAS_ONE relation.
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -2172,7 +2185,7 @@ class CHasOneRelation extends CActiveRelation
 /**
  * CHasManyRelation represents the parameters specifying a HAS_MANY relation.
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -2225,7 +2238,7 @@ class CHasManyRelation extends CActiveRelation
 /**
  * CManyManyRelation represents the parameters specifying a MANY_MANY relation.
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -2238,7 +2251,7 @@ class CManyManyRelation extends CHasManyRelation
  * CActiveRecordMetaData represents the meta-data for an Active Record class.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveRecord.php 3317 2011-06-24 20:38:49Z qiang.xue $
+ * @version $Id: CActiveRecord.php 3344 2011-07-06 22:04:50Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */

@@ -24,7 +24,7 @@
  * the {@link setBasePath basePath}.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CAssetManager.php 3289 2011-06-18 21:20:13Z qiang.xue $
+ * @version $Id: CAssetManager.php 3330 2011-06-28 12:08:49Z qiang.xue $
  * @package system.web
  * @since 1.0
  */
@@ -146,6 +146,14 @@ class CAssetManager extends CApplicationComponent
 	 * be published recursively. Note, in this case the method only checks the
 	 * existence of the target directory to avoid repetitive copying.</li>
 	 * </ul>
+	 *
+	 * Note: On rare scenario, a race condition can develop that will lead to a
+	 * one-time-manifestation of a non-critical problem in the creation of the directory
+	 * that holds the published assets. This problem can be avoided altogether by 'requesting'
+	 * in advance all the resources that are supposed to trigger a 'publish()' call, and doing
+	 * that in the application deployment phase, before system goes live. See more in the following
+	 * discussion: http://code.google.com/p/yii/issues/detail?id=2579
+	 *
 	 * @param string $path the asset (file or directory) to be published
 	 * @param boolean $hashByName whether the published directory should be named as the hashed basename.
 	 * If false, the name will be the hashed dirname of the path being published.

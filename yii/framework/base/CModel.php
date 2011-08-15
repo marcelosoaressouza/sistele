@@ -15,7 +15,7 @@
  * CModel defines the basic framework for data models that need to be validated.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CModel.php 3276 2011-06-15 14:21:12Z alexander.makarow $
+ * @version $Id: CModel.php 3349 2011-07-08 11:27:53Z mdomba $
  * @package system.base
  * @since 1.0
  */
@@ -475,7 +475,7 @@ abstract class CModel extends CComponent implements IteratorAggregate, ArrayAcce
 	}
 
 	/**
-	 * Unsets the attributes.
+	 * Sets the attributes to be null.
 	 * @param array $names list of attributes to be set null. If this parameter is not given,
 	 * all attributes as specified by {@link attributeNames} will have their values unset.
 	 * @since 1.1.3

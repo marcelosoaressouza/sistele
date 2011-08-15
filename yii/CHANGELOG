@@ -4,7 +4,27 @@
 
 Version 1.1.9 work in progress
 ------------------------------
-
+- Bug: Removed unnecessary COciCommandBuilder::createInsertCommand quotes (Sam Dark)
+- Bug: CHttpRequest.sendFile() gives incorrect content length when output_handler is enabled through code or non output_handler directive (Sam Dark)
+- Bug #2603: Fixed the bug that CDbHttpSession::regenerateID call when session isn't started results in SQL error (Sam Dark)
+- Bug #2623: Fixed the bug that by setting multiple classes in CGridView itemsCssClass prevents rows being selected (mdomba)
+- Bug #2635: MigrateCommand migration execution time is now measured correctly (Sam Dark)
+- Bug #2636: CConsoleCommand::init() wasn't called in yiic shell mode (Sam Dark)
+- Chg: Upgraded JQuery UI to 1.8.15 (Sam Dark)
+- Chg: Upgraded jQuery to 1.6.2 (Sam Dark)
+- Chg: Reverted back the changes made to fix issue 2284 (Qiang)
+- Enh #2029: Added scope support to Model::relations() (creocoder, Sam Dark)
+- Enh #2334: CHttpRequest::getPathInfo() now properly decodes both UTF-8 and ISO-8859-1 encoded URIs (Sam Dark)
+- Enh #2387: Numeric keys are now displayed in error/exception stacktrace call argument if array isn't 0..X indexed (Sam Dark)
+- Enh #2602: Better error handling in CHttpSession::open() when using PHP <5.3.0 (Sam Dark)
+- Enh #2604: CArrayDataProvider::keyField can now be set to false to use keys from $rawData array instead of a named keyField (creocoder, Sam Dark)
+- Enh #2637: Related table alias set dynamically in relational query is now available in the scopes of related model (creocoder, Sam Dark)
+- Enh #2654: Enhanced CUrlManager::addRules() by allowing new rules to be inserted in front of the existing rules (Qiang)
+- Enh #2717: Extracted MigrateCommand::createMigrationHistoryTable method from MigrateCommand::getMigrationHistory (Sam Dark)
+- Enh: Documented CModule accessors with @property for better IDE autocomplete (Sam Dark)
+- Enh: Added CWebUser->loginRequiredAjaxResponse - value to be returned for ajax calls in case the user session has expired (mdomba)
+- Enh: CFileCache::get() does now suppress a possible PHP error which might occur on concurrent requests (Y!!)
+- Enh: jquery.yiiactiveform.js added check for form visibility to validate() to prevent JS error when using CActiveForm with jQuery dialog (mdomba)
 
 Version 1.1.8 June 26, 2011
 ---------------------------

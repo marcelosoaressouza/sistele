@@ -13,8 +13,7 @@
             {
                 if (document.frm.emails[i].checked) { c_value = c_value + document.frm.emails[i].value + "\n"; }    
             }
-        
-                    
+
             if (c_value == "")
             {
                 jAlert ("Escolha ao menos um Telecentro na lista.", "Alerta Sistele");
@@ -66,10 +65,11 @@ $dataProvider = $model->search();
 $dataProvider->pagination->pageSize = 250;
 
 $this->widget('zii.widgets.grid.CGridView', array(
-                  'id'=>'telecentro-grid',
-                  'dataProvider'=>$dataProvider,
-                  'enableSorting'=>true,
-                  //'filter'=>$model,
+                  'id'            => 'telecentro-grid',
+                  'dataProvider'  => $dataProvider,
+                  'enableSorting' => true,
+                  'ajaxUpdate'    => false,
+                  //'filter'      => $model,
                   'columns'=>array(
                                    array('name' => ''  , 'value' => 'CHtml::checkBox("emails[]", null, array("value" => $data->email))', 'type'=>'raw', 'htmlOptions' => array('width'=>5), 'filter'=>false),
                                    array('name' => 'codigo'  , 'value' => 'CHtml::link($data->codigo, "/telecentro/viewBox/".$data->id, array("class"=>"viewbox"))', 'type'=>'raw', 'htmlOptions' => array('width'=>5), 'filter'=>false,),
@@ -78,7 +78,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                    'email',
                                    'municipio',
                                    'uf',
-//                                   'telefones',
                                    'proponente',
                                    array('class'=>'CButtonColumn',
                                          'template'=>'{view}{update}{delete}{bolsista}',

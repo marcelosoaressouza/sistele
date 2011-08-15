@@ -12,7 +12,7 @@
  * CDbCriteria represents a query criteria, such as conditions, ordering by, limit/offset.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CDbCriteria.php 3238 2011-05-25 19:02:15Z qiang.xue $
+ * @version $Id: CDbCriteria.php 3345 2011-07-06 22:16:44Z alexander.makarow $
  * @package system.db.schema
  * @since 1.0
  */
@@ -97,7 +97,7 @@ class CDbCriteria extends CComponent
 	public $alias;
 	/**
 	 * @var boolean whether the foreign tables should be joined with the primary table in a single SQL.
-	 * This property is only used in relational AR queries.
+	 * This property is only used in relational AR queries for HAS_MANY and MANY_MANY relations.
 	 *
 	 * When this property is set true, only a single SQL will be executed for a relational AR query,
 	 * even if the primary table is limited and the relationship between a foreign table and the primary
@@ -105,7 +105,8 @@ class CDbCriteria extends CComponent
 	 *
 	 * When this property is set false, a SQL statement will be executed for each HAS_MANY relation.
 	 *
-	 * When this property is not set, if the primary table is limited, a SQL statement will be executed for each HAS_MANY relation.
+	 * When this property is not set, if the primary table is limited or paginated,
+	 * a SQL statement will be executed for each HAS_MANY relation.
 	 * Otherwise, a single SQL statement will be executed for all.
 	 *
 	 * @since 1.1.4
@@ -132,15 +133,16 @@ class CDbCriteria extends CComponent
      * <li>{@link CActiveRecord::count()}</li>
      * </ul>
 	 *
-     * Can be set to one of the following:
-     * <ul>
-     * <li>One scope: $criteria->scopes='scopeName';</li>
-     * <li>Multiple scopes: $criteria->scopes=array('scopeName1','scopeName1');</li>
-     * <li>Scope with parameters: $criteria->scopes=array('scopeName'=>array($paramters));</li>
-     * <li>Multiple scopes with the same name: array(array('scopeName'=>array($paramters1)),array('scopeName'=>array($paramters2)));</li>
-     * </ul>
-     * @since 1.1.7
-     */
+	 * Can be set to one of the following:
+	 * <ul>
+	 * <li>One scope: $criteria->scopes='scopeName';</li>
+	 * <li>Multiple scopes: $criteria->scopes=array('scopeName1','scopeName2');</li>
+	 * <li>Scope with parameters: $criteria->scopes=array('scopeName'=>array($params));</li>
+	 * <li>Multiple scopes with parameters: $criteria->scopes=array('scopeName1'=>array($params1),'scopeName2'=>array($params2));</li>
+	 * <li>Multiple scopes with the same name: array(array('scopeName'=>array($params1)),array('scopeName'=>array($params2)));</li>
+	 * </ul>
+	 * @since 1.1.7
+	 */
 	public $scopes;
 
 	/**

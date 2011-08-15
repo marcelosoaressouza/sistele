@@ -14,9 +14,17 @@
  * CModule mainly manages application components and sub-modules.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CModule.php 3001 2011-02-24 16:42:44Z alexander.makarow $
+ * @version $Id: CModule.php 3363 2011-07-27 14:02:57Z alexander.makarow $
  * @package system.base
  * @since 1.0.4
+ *
+ * @property string $basePath Returns the root directory of the module.
+ * @property array $components Returns the application components.
+ * @property string $id Returns the module ID.
+ * @property string $modulePath Returns the directory that contains the application modules.
+ * @property array $modules Returns the configuration of the currently installed modules.
+ * @property CAttributeCollection $params Returns user-defined parameters.
+ * @property CModule $parentModule Returns the parent module.
  */
 abstract class CModule extends CComponent
 {

@@ -15,7 +15,7 @@
  * {@link CActiveRecord}.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveFinder.php 3281 2011-06-15 19:05:45Z qiang.xue $
+ * @version $Id: CActiveFinder.php 3352 2011-07-12 21:05:22Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -222,14 +222,22 @@ class CActiveFinder extends CComponent
 			if($relation instanceof CActiveRelation)
 			{
 				$oldAlias=$model->getTableAlias(false,false);
-				$model->setTableAlias($relation->alias===null?$relation->name:$relation->alias);
+				if(isset($options['alias']))
+					$model->setTableAlias($options['alias']);
+				else if($relation->alias===null)
+					$model->setTableAlias($relation->name);
+				else
+					$model->setTableAlias($relation->alias);
 			}
 
 			if(($scope=$model->defaultScope())!==array())
 				$relation->mergeWith($scope,true);
 
+			if(!empty($relation->scopes))
+				$scopes=array_merge($scopes,(array)$relation->scopes); // no need for complex merging
+
 			if(!empty($options['scopes']))
-				$scopes=array_merge($scopes,(array)$options['scopes']); // no need complex merging, $scopes always in simle format
+				$scopes=array_merge($scopes,(array)$options['scopes']); // no need for complex merging
 
 			if($scopes!==array())
 			{
@@ -313,7 +321,7 @@ class CActiveFinder extends CComponent
  * CJoinElement represents a tree node in the join tree created by {@link CActiveFinder}.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveFinder.php 3281 2011-06-15 19:05:45Z qiang.xue $
+ * @version $Id: CActiveFinder.php 3352 2011-07-12 21:05:22Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -1197,7 +1205,7 @@ class CJoinElement
  * CJoinQuery represents a JOIN SQL statement.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveFinder.php 3281 2011-06-15 19:05:45Z qiang.xue $
+ * @version $Id: CActiveFinder.php 3352 2011-07-12 21:05:22Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0
  */
@@ -1357,7 +1365,7 @@ class CJoinQuery
  * CStatElement represents STAT join element for {@link CActiveFinder}.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CActiveFinder.php 3281 2011-06-15 19:05:45Z qiang.xue $
+ * @version $Id: CActiveFinder.php 3352 2011-07-12 21:05:22Z alexander.makarow $
  * @package system.db.ar
  * @since 1.0.4
  */

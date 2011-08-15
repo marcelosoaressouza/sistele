@@ -5,7 +5,7 @@
  * @link http://www.yiiframework.com/
  * @copyright Copyright &copy; 2008-2010 Yii Software LLC
  * @license http://www.yiiframework.com/license/
- * @version $Id: jquery.yiiactiveform.js 3158 2011-04-02 22:48:01Z qiang.xue $
+ * @version $Id: jquery.yiiactiveform.js 3381 2011-08-11 13:49:42Z mdomba $
  * @since 1.1.1
  */
 
@@ -56,7 +56,7 @@
 				}
 
 				settings.timer = setTimeout(function(){
-					if(settings.submitting)
+					if(settings.submitting || $form.is(':hidden'))
 						return;
 					if(attribute.beforeValidateAttribute==undefined || attribute.beforeValidateAttribute($form, attribute)) {
 						$.each(settings.attributes, function(){

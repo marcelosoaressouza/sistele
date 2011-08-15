@@ -13,7 +13,7 @@
  * CHtml is a static class that provides a collection of helper methods for creating HTML views.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CHtml.php 3306 2011-06-23 15:26:33Z qiang.xue $
+ * @version $Id: CHtml.php 3328 2011-06-27 18:14:06Z qiang.xue $
  * @package system.web.helpers
  * @since 1.0
  */

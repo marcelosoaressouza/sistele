@@ -112,7 +112,7 @@
  * {@link CWebApplication::getUrlManager()}.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CUrlManager.php 3237 2011-05-25 13:13:26Z qiang.xue $
+ * @version $Id: CUrlManager.php 3358 2011-07-15 13:29:09Z qiang.xue $
  * @package system.web
  * @since 1.0
  */
@@ -232,12 +232,22 @@ class CUrlManager extends CApplicationComponent
 	 * In order to make the new rules effective, this method must be called BEFORE
 	 * {@link CWebApplication::processRequest}.
 	 * @param array $rules new URL rules (pattern=>route).
+	 * @param boolean $append whether the new URL rules should be appended to the existing ones. If false,
+	 * they will be inserted at the beginning.
 	 * @since 1.1.4
 	 */
-	public function addRules($rules)
+	public function addRules($rules, $append=true)
 	{
-		foreach($rules as $pattern=>$route)
-			$this->_rules[]=$this->createUrlRule($route,$pattern);
+		if ($append)
+		{
+			foreach($rules as $pattern=>$route)
+				$this->_rules[]=$this->createUrlRule($route,$pattern);
+		}
+		else
+		{
+			foreach($rules as $pattern=>$route)
+				array_unshift($this->_rules, $this->createUrlRule($route,$pattern));
+		}
 	}
 
 	/**
@@ -506,7 +516,7 @@ class CUrlManager extends CApplicationComponent
  * {@link createUrl} and {@link parseUrl}.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CUrlManager.php 3237 2011-05-25 13:13:26Z qiang.xue $
+ * @version $Id: CUrlManager.php 3358 2011-07-15 13:29:09Z qiang.xue $
  * @package system.web
  * @since 1.1.8
  */
@@ -545,7 +555,7 @@ abstract class CBaseUrlRule extends CComponent
  * may have a set of named parameters.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CUrlManager.php 3237 2011-05-25 13:13:26Z qiang.xue $
+ * @version $Id: CUrlManager.php 3358 2011-07-15 13:29:09Z qiang.xue $
  * @package system.web
  * @since 1.0
  */

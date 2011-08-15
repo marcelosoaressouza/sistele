@@ -22,7 +22,7 @@
  * accessed via {@link CWebApplication::getRequest()}.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CHttpRequest.php 3050 2011-03-12 13:22:11Z qiang.xue $
+ * @version $Id: CHttpRequest.php 3369 2011-08-04 07:55:11Z mdomba $
  * @package system.web
  * @since 1.0
  */
@@ -356,7 +356,7 @@ class CHttpRequest extends CApplicationComponent
 			if(($pos=strpos($pathInfo,'?'))!==false)
 			   $pathInfo=substr($pathInfo,0,$pos);
 
-			$pathInfo=urldecode($pathInfo);
+			$pathInfo=$this->urldecode($pathInfo);
 
 			$scriptUrl=$this->getScriptUrl();
 			$baseUrl=$this->getBaseUrl();
@@ -372,6 +372,38 @@ class CHttpRequest extends CApplicationComponent
 			$this->_pathInfo=trim($pathInfo,'/');
 		}
 		return $this->_pathInfo;
+	}
+
+	/**
+	 * Improved variant of urldecode.
+	 * Properly decodes both UTF-8 and ISO-8859-1 encoded URIs.
+	 *
+	 * @param string $str encoded string
+	 * @return string decoded string
+	 */
+	private function urldecode($str)
+	{
+		$str = urldecode($str);
+
+		// is it UTF-8?
+		// http://w3.org/International/questions/qa-forms-utf-8.html
+		if(preg_match('%^(?:
+		   [\x09\x0A\x0D\x20-\x7E]            # ASCII
+		 | [\xC2-\xDF][\x80-\xBF]             # non-overlong 2-byte
+		 | \xE0[\xA0-\xBF][\x80-\xBF]         # excluding overlongs
+		 | [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}  # straight 3-byte
+		 | \xED[\x80-\x9F][\x80-\xBF]         # excluding surrogates
+		 | \xF0[\x90-\xBF][\x80-\xBF]{2}      # planes 1-3
+		 | [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
+		 | \xF4[\x80-\x8F][\x80-\xBF]{2}      # plane 16
+		)*$%xs', $str))
+		{
+			return $str;
+		}
+		else
+		{
+			return utf8_encode($str);
+		}
 	}
 
 	/**
@@ -701,7 +733,7 @@ class CHttpRequest extends CApplicationComponent
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header("Content-type: $mimeType");
-		if(ini_get("output_handler")=='')
+		if(ob_get_length()===false)
 			header('Content-Length: '.(function_exists('mb_strlen') ? mb_strlen($content,'8bit') : strlen($content)));
 		header("Content-Disposition: attachment; filename=\"$fileName\"");
 		header('Content-Transfer-Encoding: binary');
@@ -881,7 +913,7 @@ class CHttpRequest extends CApplicationComponent
  * </pre>
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CHttpRequest.php 3050 2011-03-12 13:22:11Z qiang.xue $
+ * @version $Id: CHttpRequest.php 3369 2011-08-04 07:55:11Z mdomba $
  * @package system.web
  * @since 1.0
  */
@@ -972,7 +1004,7 @@ class CCookieCollection extends CMap
 
 	/**
 	 * Sends a cookie.
-	 * @param CHttpCookie $cookie cook to be sent
+	 * @param CHttpCookie $cookie cookie to be sent
 	 */
 	protected function addCookie($cookie)
 	{
@@ -987,7 +1019,7 @@ class CCookieCollection extends CMap
 
 	/**
 	 * Deletes a cookie.
-	 * @param CHttpCookie $cookie cook to be deleted
+	 * @param CHttpCookie $cookie cookie to be deleted
 	 */
 	protected function removeCookie($cookie)
 	{

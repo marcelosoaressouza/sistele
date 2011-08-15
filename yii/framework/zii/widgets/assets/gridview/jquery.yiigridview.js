@@ -5,7 +5,7 @@
  * @link http://www.yiiframework.com/
  * @copyright Copyright &copy; 2008-2010 Yii Software LLC
  * @license http://www.yiiframework.com/license/
- * @version $Id: jquery.yiigridview.js 3286 2011-06-16 17:34:34Z qiang.xue $
+ * @version $Id: jquery.yiigridview.js 3348 2011-07-08 08:51:15Z mdomba $
  */
 
 ;(function($) {
@@ -28,8 +28,9 @@
 			var settings = $.extend({}, $.fn.yiiGridView.defaults, options || {});
 			var $this = $(this);
 			var id = $this.attr('id');
+			settings.tableClass=settings.tableClass.replace(/\s+/g,'.');
 			if(settings.updateSelector === undefined)
-				settings.updateSelector = '#'+id+' .'+settings.pagerClass.replace(/\s+/g,'.')+' a, #'+id+' .'+settings.tableClass.replace(/\s+/g,'.')+' thead th a';
+				settings.updateSelector = '#'+id+' .'+settings.pagerClass.replace(/\s+/g,'.')+' a, #'+id+' .'+settings.tableClass+' thead th a';
 
 			$.fn.yiiGridView.settings[id] = settings;
 
